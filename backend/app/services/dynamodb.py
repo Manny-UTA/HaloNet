@@ -1,4 +1,4 @@
-# DymanoDB service to save and retrieve SOS alerts
+# DynamoDB service to save and retrieve SOS alerts
 import boto3
 import uuid
 from datetime import datetime
