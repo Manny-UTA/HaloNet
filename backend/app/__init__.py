@@ -1,6 +1,8 @@
 import os 
 from dotenv import load_dotenv
 
+# Load in each of the API keys from the .env file
+
 load_dotenv()
 
 MOCK_SAFETY_API_KEY = os.getenv("MOCK_SAFETY_API_KEY")
