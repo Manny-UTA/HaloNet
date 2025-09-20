@@ -24,4 +24,4 @@
 ## Key Sponsor Notes
 - Focus on generative AI + agents
 - Must deploy on AWS
-- Challenge 2 alignment: Community Safety & Health Innovation
+- Challenge 2 alignment: Community Safety & Health Innovation 
