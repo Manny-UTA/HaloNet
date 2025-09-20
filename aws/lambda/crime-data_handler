@@ -1,1 +1,30 @@
+import json
+import requests  #need to package this or use a Lambda Layer
+
+API_KEY = "C3DAOJRwf0MOYXcFUSYdDuzFA8XBif9NIDqaUCar"
+BASE_URL = "https://api.usa.gov/crime/fbi/sapi/api/summarized"
+
+def lambda_handler(event, context):
+    params = event.get('queryStringParameters', {})
+    state = params.get('state', 'TX')  # Default to Texas
+    crime_type = params.get('type', 'violent-crime')
+    start_year = params.get('start', '2020')
+    end_year = params.get('end', '2021')
+
+    url = f"{BASE_URL}/state/{state}/{crime_type}/{start_year}/{end_year}?API_KEY={API_KEY}"
+
+    try:
+        response = requests.get(url)
+        data = response.json()
+
+        return {
+            'statusCode': 200,
+            'body': json.dumps({'crime_data': data})
+        }
+
+    except Exception as e:
+        return {
+            'statusCode': 500,
+            'body': json.dumps({'error': 'Failed to fetch crime data'})
+        }
 
