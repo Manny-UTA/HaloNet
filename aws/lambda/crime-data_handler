@@ -8,7 +8,7 @@ def lambda_handler(event, context):
     params = event.get('queryStringParameters', {})
     state = params.get('state', 'TX')  # Default to Texas
     crime_type = params.get('type', 'violent-crime')
-    start_year = params.get('start', '2024')
+    start_year = params.get('start', '2022')
     end_year = params.get('end', '2025')
 
     url = f"{BASE_URL}/state/{state}/{crime_type}/{start_year}/{end_year}?API_KEY={API_KEY}"
