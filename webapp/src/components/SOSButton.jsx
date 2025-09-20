@@ -1,12 +1,12 @@
 import React from "react";
 
-export default function SOSButton() {
+export default function SOSButton({ onClick }) {
   return (
     <button
-      className="bg-[#E46D7B] text-white font-bold py-3 px-6 rounded-full shadow-lg hover:bg-red-600"
-      onClick={() => alert("SOS Alert Triggered!")}
+      onClick={onClick ?? (() => alert("🚨 SOS Alert Triggered (mock)!"))}
+      className="bg-coral text-white font-semibold px-6 py-3 rounded-xl shadow-soft hover:opacity-90 focus:outline-none focus:ring-4 focus:ring-coral/30"
     >
-      🚨 SOS
+      Send SOS
     </button>
   );
 }

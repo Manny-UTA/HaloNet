@@ -1,18 +1,23 @@
 import React from "react";
 import Navbar from "./components/Navbar";
-import SOSButton from "./components/SOSButton";
+import Hero from "./components/Hero";
+import Features from "./components/Features";
+import CTAStrip from "./components/CTAStrip";
+import Footer from "./components/Footer";
 
-function App() {
+export default function App() {
   return (
-    <div className="min-h-screen bg-[#F7F4FB] text-[#2E2A5D]">
+    <div className="min-h-screen bg-lavender text-indigo flex flex-col">
       <Navbar />
-      <main className="p-4 flex flex-col items-center">
-        <h1 className="text-3xl font-bold mb-6">HaloNet</h1>
-        <p className="mb-4">Your real-time safety companion.</p>
-        <SOSButton />
+      <main className="flex-1">
+        <Hero />
+        <Features />
+        <CTAStrip />
       </main>
+      <Footer />
     </div>
   );
 }
 
-export default App;
+
+
