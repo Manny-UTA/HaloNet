@@ -15,7 +15,7 @@ def lambda_handler(event, context): #event: input data context: function name
 
     # Save to database DynamoDB     
     table = dynamodb.Table(TABLE_NAME) #connects to DynamoDB table
-    table.put_item(item={ #save these to DynamoDB table
+    table.put_item(Item={ #save these to DynamoDB table
         'user_id': user_id,
         'location': location,
         'timestamp': context.aws_request_id # use AWS request ID
