@@ -1,1 +1,28 @@
+import json
 
+def lambda_handler(event, context):
+    # Parse the incoming JSON body
+    body = json.loads(event.get('body', '{}'))
+    user_id = body.get('user_id')
+    message = body.get('message')
+
+    # Validate required fields
+    if not user_id or not message:
+        return {
+            'statusCode': 400,
+            'body': json.dumps({'error': 'Missing user_id or message'})
+        }
+
+    # Simulate sending alert (no real API call)
+    simulated_response = {
+        "status": "success",
+        "user_id": user_id,
+        "message": message,
+        "timestamp": context.aws_request_id
+    }
+
+    # Return simulated response
+    return {
+        'statusCode': 200,
+        'body': json.dumps(simulated_response)
+    }

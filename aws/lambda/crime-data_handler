@@ -1,1 +1,29 @@
+import json
+
+def lambda_handler(event, context):
+    # Extract query parameters
+    params = event.get('queryStringParameters', {})
+    state = params.get('state', 'TX')           # Default Texas
+    crime_type = params.get('type', 'violent-crime')
+    start_year = params.get('start', '2022')
+    end_year = params.get('end', '2025')
+
+    # Simulated crime data
+    data = {
+        "state": state,
+        "crime_type": crime_type,
+        "years": [start_year, end_year],
+        "statistics": {
+            "2022": {"incidents": 1200, "rate": 4.5},
+            "2023": {"incidents": 1300, "rate": 4.7},
+            "2024": {"incidents": 1250, "rate": 4.6},
+            "2025": {"incidents": 1280, "rate": 4.8}
+        }
+    }
+
+    # Return simulated response
+    return {
+        'statusCode': 200,
+        'body': json.dumps({'crime_data': data})
+    }
 
