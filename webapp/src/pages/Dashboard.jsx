@@ -1,79 +1,65 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 
 export default function Dashboard() {
-  const [status, setStatus] = useState("safe"); // "safe" or "alert"
+  const [status, setStatus] = useState("safe"); // "safe" | "alert"
+  const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-[#F8F4FA] flex flex-col">
+    <div className="flex flex-col items-center min-h-screen bg-[#F8F4FA] p-6">
       {/* Header */}
-      <header className="flex justify-between items-center px-4 py-3 bg-white shadow-sm">
-        <h1 className="text-xl font-bold text-[#5A3972]">HaloNet</h1>
-        <button className="text-[#5A3972] font-medium">☰</button>
-      </header>
-
-      {/* Status */}
-      <div className="px-4 py-2 text-center">
-        <span
-          className={`inline-block px-3 py-1 text-sm rounded-full font-medium ${
-            status === "safe"
-              ? "bg-green-100 text-green-700"
-              : "bg-red-100 text-red-700"
-          }`}
-        >
-          {status === "safe" ? "🟢 Safe" : "🔴 Alert"}
-        </span>
-      </div>
-
-      {/* Main Content */}
-      <main className="flex-1 px-4 py-6 space-y-6">
-        {/* Feature Cards */}
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-white rounded-2xl p-4 shadow-md flex flex-col items-center">
-            <span className="text-2xl">📍</span>
-            <h2 className="font-bold text-[#5A3972] mt-2">Safe Route</h2>
-            <p className="text-sm text-gray-500 text-center">
-              Get safer paths using FirstNet.
-            </p>
+      <div className="w-full flex justify-between items-center mb-10">
+        <h1 className="text-2xl font-bold text-[#5A3972]">HaloNet</h1>
+        <button className="p-2">
+          <div className="space-y-1">
+            <div className="w-6 h-0.5 bg-[#5A3972]"></div>
+            <div className="w-6 h-0.5 bg-[#5A3972]"></div>
+            <div className="w-6 h-0.5 bg-[#5A3972]"></div>
           </div>
-
-          <div className="bg-white rounded-2xl p-4 shadow-md flex flex-col items-center">
-            <span className="text-2xl">📡</span>
-            <h2 className="font-bold text-[#5A3972] mt-2">Live Tracking</h2>
-            <p className="text-sm text-gray-500 text-center">
-              Share location in real-time.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-2xl p-4 shadow-md flex flex-col items-center">
-            <span className="text-2xl">🛡️</span>
-            <h2 className="font-bold text-[#5A3972] mt-2">Secure ID</h2>
-            <p className="text-sm text-gray-500 text-center">
-              Verify ID with encryption.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-2xl p-4 shadow-md flex flex-col items-center">
-            <span className="text-2xl">📢</span>
-            <h2 className="font-bold text-[#5A3972] mt-2">Alerts</h2>
-            <p className="text-sm text-gray-500 text-center">
-              Send instant SOS alerts.
-            </p>
-          </div>
-        </div>
-      </main>
-
-      {/* SOS Bubble Button */}
-      <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 md:left-auto md:right-8">
-        <button
-          onClick={() =>
-            setStatus(status === "safe" ? "alert" : "safe")
-          }
-          className="bg-[#E96A7D] text-white rounded-full w-24 h-24 md:w-28 md:h-28 flex flex-col items-center justify-center shadow-xl hover:bg-[#d95f72] transition"
-        >
-          <span className="text-3xl">🚨</span>
-          <span className="font-bold mt-1">SOS</span>
         </button>
       </div>
+
+      {/* Status Indicator */}
+      <div
+        className={`px-6 py-2 rounded-full font-semibold text-white mb-10 shadow-md ${
+          status === "safe" ? "bg-[#4BBF9E]" : "bg-[#E96A7D]"
+        }`}
+      >
+        {status === "safe" ? "🟢 Safe" : "🔴 Alert"}
+      </div>
+
+      {/* Quick Actions Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-12 w-full max-w-3xl">
+        <Link
+          to="/safe-routes"
+          className="bg-white p-6 rounded-xl shadow-md flex flex-col items-center"
+        >
+          <span className="text-3xl mb-2">📍</span>
+          <p className="font-semibold text-[#5A3972]">Safe Route</p>
+        </Link>
+
+        <Link
+          to="/live-tracking"
+          className="flex flex-col items-center justify-center bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition"
+        >
+          <span className="text-4xl mb-3">📡</span>
+          <span className="text-[#5A3972] font-medium">Live Tracking</span>
+        </Link>
+
+        <button className="flex flex-col items-center justify-center bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+          <span className="text-4xl mb-3">🛡️</span>
+          <span className="text-[#5A3972] font-medium">Verify ID</span>
+        </button>
+      </div>
+
+      {/* Big SOS Button */}
+      <button
+        onClick={() => navigate("/sos")} // 👈 go to SOS page
+        className="w-40 h-40 rounded-full bg-[#E96A7D] text-white text-2xl font-bold shadow-lg hover:bg-[#d95f72] transition"
+      >
+        🚨 SOS
+      </button>
     </div>
   );
 }

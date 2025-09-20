@@ -3,19 +3,34 @@ import { useNavigate } from "react-router-dom";
 
 export default function Landing() {
   const navigate = useNavigate();
-  const [stage, setStage] = useState("splash"); // "splash" → "features"
+  const [fade, setFade] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
-    // After 2.5s, move from splash → features
-    const timer = setTimeout(() => setStage("features"), 2500);
-    return () => clearTimeout(timer);
-  }, []);
+    // Start fading after 2s
+    const fadeTimer = setTimeout(() => setFade(true), 2000);
 
-  if (stage === "splash") {
-    // Branding splash
+    // Hide splash + go to auth after 2.5s
+    const navTimer = setTimeout(() => {
+      setShowSplash(false);
+      navigate("/auth");
+    }, 2500);
+
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(navTimer);
+    };
+  }, [navigate]);
+
+  if (showSplash) {
+    // 🔹 Splash screen
     return (
-      <div className="flex items-center justify-center h-screen bg-[#F8F4FA] animate-fadeOut">
-        <div className="text-center transition-opacity duration-700">
+      <div
+        className={`flex items-center justify-center h-screen bg-[#F8F4FA] transition-opacity duration-500 ${
+          fade ? "opacity-0" : "opacity-100"
+        }`}
+      >
+        <div className="text-center">
           <div className="flex flex-col items-center">
             <div className="relative">
               <div className="w-20 h-20 bg-[#5A3972] rounded-t-full rounded-b-md"></div>
@@ -29,7 +44,7 @@ export default function Landing() {
     );
   }
 
-  // Feature explainer
+  // 🔹 If splash is done, fallback UI (rarely visible, since we navigate to /auth)
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-[#F8F4FA] px-6 text-center">
       <h2 className="text-2xl font-bold text-[#5A3972]">📍 Safer Routes</h2>
