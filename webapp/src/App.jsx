@@ -1,23 +1,32 @@
-import React from "react";
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Features from "./components/Features";
-import CTAStrip from "./components/CTAStrip";
-import Footer from "./components/Footer";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { useState } from "react";
+import Landing from "./pages/Landing";
+import Auth from "./pages/Auth";
+import Dashboard from "./pages/Dashboard";
 
 export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   return (
-    <div className="min-h-screen bg-lavender text-indigo flex flex-col">
-      <Navbar />
-      <main className="flex-1">
-        <Hero />
-        <Features />
-        <CTAStrip />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <Routes>
+        {/* Branding / Landing */}
+        <Route path="/" element={<Landing />} />
+
+        {/* Auth Page */}
+        <Route path="/auth" element={<Auth setIsAuthenticated={setIsAuthenticated} />} />
+
+        {/* Dashboard (protected route) */}
+        <Route
+          path="/dashboard"
+          element={
+            isAuthenticated ? <Dashboard /> : <Navigate to="/auth" replace />
+          }
+        />
+
+        {/* Fallback */}
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </Router>
   );
 }
-
-
-
