@@ -14,7 +14,7 @@ export default function Auth({ setIsAuthenticated }) {
     if (isLogin) {
       if (username === "User" && password === "User") {
         setIsAuthenticated(true); // ✅ Mark logged in
-        navigate("/dashboard");
+        navigate("/walkthrough");
       } else {
         alert("❌ Invalid credentials. Use username: User, password: User");
       }
