@@ -7,7 +7,7 @@ sns = boto3.client('sns') # send messages using AWS SNS
 
 # table name and SNS topic ARN from DynamoDB
 TABLE_NAME = 'SOSAlerts' # name the DynamoDB table
-SNS_TOPIC_ARN = '' # add ARN here
+SNS_TOPIC_ARN = 'arn:aws:sns:us-east-2:891541664037:SOSAlertsTopic' # add ARN here
 
 
 def lambda_handler(event, context): # event: input data, context: function metadata

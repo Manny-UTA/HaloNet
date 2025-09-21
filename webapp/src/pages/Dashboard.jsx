@@ -1,9 +1,11 @@
 import { useState } from "react";
+
 import { Link, useNavigate } from "react-router-dom"; // 👈 ensure useNavigate is imported
 
 export default function Dashboard() {
   const [status, setStatus] = useState("safe"); // "safe" | "alert"
   const [menuOpen, setMenuOpen] = useState(false); // 👈 state for dropdown
+  
   const navigate = useNavigate();
 
   return (
@@ -91,11 +93,13 @@ export default function Dashboard() {
           <span className="text-4xl mb-3">🛡️</span>
           <span className="text-[#5A3972] font-medium">Verify ID</span>
         </Link>
+
       </div>
 
       {/* Big SOS Button */}
       <button
         onClick={() => navigate("/sos")}
+
         className="w-40 h-40 rounded-full bg-[#E96A7D] text-white text-2xl font-bold shadow-lg hover:bg-[#d95f72] transition"
       >
         🚨 SOS

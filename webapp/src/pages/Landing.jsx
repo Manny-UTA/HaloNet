@@ -6,16 +6,16 @@ export default function Landing() {
   const [fade, setFade] = useState(false);
 
   useEffect(() => {
-  const fadeTimer = setTimeout(() => setFade(true), 2000);
-  const navTimer = setTimeout(() => {
-    navigate("/auth/form", { replace: true }); // ✅ goes to the real form
-  }, 2500);
+    const fadeTimer = setTimeout(() => setFade(true), 2000);
+    const navTimer = setTimeout(() => {
+      navigate("/auth/form", { replace: true }); // ✅ goes to the real form
+    }, 2500);
 
-  return () => {
-    clearTimeout(fadeTimer);
-    clearTimeout(navTimer);
-  };
-}, [navigate]);
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(navTimer);
+    };
+  }, [navigate]);
 
   return (
     <div
