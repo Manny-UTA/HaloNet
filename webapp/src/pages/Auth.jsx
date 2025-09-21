@@ -14,12 +14,16 @@ export default function Auth({ setIsAuthenticated }) {
     if (isLogin) {
       if (username === "User" && password === "User") {
         setIsAuthenticated(true); // ✅ Mark logged in
-        navigate("/walkthrough");
+
+        navigate("/walkthrough");   // ✅ go to dashboard after login
+
       } else {
         alert("❌ Invalid credentials. Use username: User, password: User");
       }
     } else {
-      alert(`✅ Account created for ${name || "User"} (demo only). You can now log in!`);
+      alert(
+        `✅ Account created for ${name || "User"} (demo only). You can now log in!`
+      );
       setIsLogin(true);
       setUsername("");
       setPassword("");

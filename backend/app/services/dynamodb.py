@@ -1,7 +1,9 @@
 # DynamoDB service to save and retrieve SOS alerts
+
 import boto3 
 import uuid 
 from datetime import datetime 
+ 
 
 # Boto 3 library allows for put, get and query items from table
 # Create the resource and table objects
